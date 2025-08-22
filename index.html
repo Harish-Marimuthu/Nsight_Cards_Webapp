@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Sign In</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+	<style>
+	.wrapper {
+		background-image: url('images/pexels-codioful-7135020.jpg');
+		background-size: cover;
+		background-position: center;
+		background-repeat: no-repeat;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		height: 100vh;
+	}
+	.logo {
+    position: absolute;
+    top: 4px;
+    left: 20px;
+    width: 80px; 
+    height: auto;
+}
+	</style>
+</head>
+<body>
+    <div class="wrapper">
+		<img class="logo" src="./images/Nsightlogo-removebg-preview.png" alt="">
+        <div class="inner">
+			
+			<div class="wrapper" style="background-image: url('./images/pexels-codioful-7135020.jpg');"></div>
+            <div class="image-holder">
+                <div class="image-carousel">
+                    <div class="carousel-container">
+                        <img class="carousel-slide" src="images/invoice_index.jpg" alt="">
+                        <img class="carousel-slide" src="./images/Monitoring_index.jpg" alt="">
+                        <img class="carousel-slide" src="./images/Margin_index.jpg" alt="">
+                    </div>
+                </div>
+                <div class="dots">
+                    <span class="dot active" onclick="moveSlide(0)"></span>
+                    <span class="dot" onclick="moveSlide(1)"></span>
+                    <span class="dot" onclick="moveSlide(2)"></span>
+                </div>
+            </div>
+            <form action="">
+                <h3>Sign In</h3>
+                <div class="form-wrapper">
+                    <input type="text" placeholder="Username" class="form-control">
+                    <i class="zmdi zmdi-account"></i>
+                </div>
+                <div class="form-wrapper">
+                    <input type="password" placeholder="Password" class="form-control">
+                    <i class="zmdi zmdi-lock"></i>
+                </div>
+                <button onclick="redirectToCards(event)">Sign In 
+                    <i class="zmdi zmdi-arrow-right"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        function moveSlide(index) {
+            const container = document.querySelector('.carousel-container');
+            const dots = document.querySelectorAll('.dot');
+            container.style.transform = `translateX(-${index * 100}%)`;
+            dots.forEach(dot => dot.classList.remove('active'));
+            dots[index].classList.add('active');
+            currentSlide = index;
+        }
+		function redirectToCards(event) { 
+			window.location.href = "./Cards.html";
+			event.preventDefault()
+ 
+    }
+// Auto-scroll function
+function autoSlide() {
+    const slides = document.querySelectorAll('.carousel-slide').length;
+    currentSlide = (currentSlide + 1) % slides; 
+    moveSlide(currentSlide);
+}
+
+setInterval(autoSlide, 3000); 
+
+    </script>
+</body>
+</html>

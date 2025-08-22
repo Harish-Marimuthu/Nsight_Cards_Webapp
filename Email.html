@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stylish Email Input</title>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: url('./images/pexels-codioful-7135020.jpg') no-repeat center center/cover;
+        }
+        .logo {
+            position: absolute;
+            top: 4px;
+            left: 20px;
+            width: 80px; 
+            height: auto;
+        }
+
+        .input-container {
+            position: relative;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+            margin-top: -50px; /* Moves the email input higher */
+        }
+
+        .input-box {
+            position: relative;
+            display: flex;
+            align-items: center;
+            background: white;
+            padding: 12px;
+            border-radius: 50px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .input-box input {
+            border: none;
+            outline: none;
+            padding: 10px;
+            font-size: 16px;
+            width: 250px;
+            border-radius: 50px;
+        }
+
+        .input-box i {
+            color: #007bff;
+            font-size: 20px;
+            padding: 0 10px;
+        }
+
+        .input-box button {
+            border: none;
+            background: #007bff;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .input-box button:hover {
+            background: #0056b3;
+        }
+
+        .error-log-container {
+            margin-top: 20px;
+            text-align: center;
+            cursor: pointer;
+            padding: 10px;
+            background: rgba(255, 0, 0, 0.2);
+            border: 1px solid red;
+            border-radius: 5px;
+            display: none;
+        }
+
+        .error-log-container:hover {
+            background: rgba(255, 0, 0, 0.4);
+        }
+        .logo {
+            position: absolute;
+            top: 4px;
+            left: 20px;
+            width: 80px; 
+            height: auto;
+        }
+        .profile {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            cursor: pointer;
+        }
+        .profile img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+        .dropdown {
+            display: none;
+            position: absolute;
+            top: 50px;
+            right: 20px;
+            background: white;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+        }
+        .dropdown a {
+            text-decoration: none;
+            color: black;
+            display: block;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img class="logo" src="./images/Nsightlogo-removebg-preview.png" alt="">
+        <div class="profile" onclick="toggleDropdown()">
+            <img src="./images/Profile.png" alt="Profile">
+        </div>
+        <div class="dropdown" id="dropdownMenu">
+            <a href="#" onclick="logout()">Logout</a>
+        </div>
+    <img class="logo" src="./images/Nsightlogo-removebg-preview.png" alt="">
+
+    <div class="input-container">
+        <div class="input-box">
+            <i class="fas fa-envelope"></i>
+            <input type="email" id="email" placeholder="Enter your email">
+            <button onclick="validateEmail()">Submit</button>
+        </div>
+    </div>
+
+    <div class="error-log-container" id="error-log-container" onclick="showDetailedError()">
+        <span id="error-log"></span>
+    </div>
+
+    <script>
+        function validateEmail() {
+            const email = document.getElementById('email').value;
+            const errorLogContainer = document.getElementById('error-log-container');
+            const errorLog = document.getElementById('error-log');
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (!emailRegex.test(email)) {
+                errorLog.textContent = 'Please enter a valid email address. Click for details.';
+                errorLogContainer.style.display = 'block';
+            } else {
+                errorLog.textContent = '';
+                errorLogContainer.style.display = 'none';
+            }
+        }
+
+        function showDetailedError() {
+            alert("Detailed error log: Invalid email format. Please use a valid email address like example@example.com.");
+        }
+        function toggleDropdown() {
+            let dropdown = document.getElementById("dropdownMenu");
+            dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+        }
+        function logout() {
+            alert("Logging out...");
+            window.location.href = "./index.html";
+        }
+    </script>
+</body>
+</html>

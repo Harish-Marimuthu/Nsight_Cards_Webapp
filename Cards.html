@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Button Cards</title>
+    <link rel="stylesheet" href="./css/cards.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            background: url('./images/pexels-codioful-7135020.jpg') no-repeat center center/cover;
+        }
+        .logo {
+            position: absolute;
+            top: 4px;
+            left: 20px;
+            width: 80px; 
+            height: auto;
+        }
+        .profile {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            cursor: pointer;
+        }
+        .profile img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+        .dropdown {
+            display: none;
+            position: absolute;
+            top: 50px;
+            right: 20px;
+            background: white;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+        }
+        .dropdown a {
+            text-decoration: none;
+            color: black;
+            display: block;
+            padding: 5px;
+        }
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgb(192, 185, 237);
+            height: 150px;
+            width: 150px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+        .popup .close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+            font-size: 18px;
+        }
+        .status-text {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img class="logo" src="./images/Nsightlogo-removebg-preview.png" alt="">
+        <div class="profile" onclick="toggleDropdown()">
+            <img src="./images/Profile.png" alt="Profile">
+        </div>
+        <div class="dropdown" id="dropdownMenu">
+            <a href="#" onclick="logout()">Logout</a>
+        </div>
+        <div class="card" id="card1">
+            <h3>Invoice Parser</h3>
+            <img onclick="redirectToupload()" src="./images/10075624.jpg" alt="Card 1 Image">
+            <div class="btn-container">
+                <button class="btn start" onclick="startAction('status1')">Start</button>
+                <button class="btn stop" onclick="stopAction('status1')">Stop</button>
+                <button class="btn status" onclick="showStatus('status1')">Status</button>
+            </div>
+            <p id="status1" class="status-text">Status: Idle</p>
+        </div>
+        <div class="card" id="card2">
+            <h3>Monitoring Agent</h3>
+            <img onclick="redirectToemail()" src="./images/6567338.jpg" alt="Card 2 Image">
+            <div class="btn-container">
+                <button class="btn start" onclick="startAction('status2')">Start</button>
+                <button class="btn stop" onclick="stopAction('status2')">Stop</button>
+                <button class="btn status" onclick="showStatus('status2')">Status</button>
+            </div>
+            <p id="status2" class="status-text">Status: Idle</p>
+        </div>
+                <div class="card" id="card3">
+            <h3>Invoice Processor</h3>
+            <img onclick="redirectTodataprocess()" src="C:\Users\LTPT-0015\Downloads\NSight Page\NSight Page\images\20943523.jpg" alt="Card 3 Image">
+            <div class="btn-container">
+                <button class="btn start" onclick="startAction('status3')">Start</button>
+                <button class="btn stop" onclick="stopAction('status3')">Stop</button>
+                <button class="btn status" onclick="showStatus('status3')">Status</button>
+            </div>
+            <p id="status3" class="status-text">Status: Idle</p>
+        </div>
+    </div>
+    
+    <div class="popup" id="statusPopup">
+        <span class="close" onclick="closePopup()">&times;</span>
+        <p id="popupStatus"></p>
+    </div>
+    
+    <script>
+        function showStatus(statusId) {
+            document.getElementById('popupStatus').innerText = document.getElementById(statusId).innerText;
+            document.getElementById('statusPopup').style.display = 'block';
+        }
+        function closePopup() {
+            document.getElementById('statusPopup').style.display = 'none';
+        }
+        function redirectToupload(event) { 
+            window.location.href = "./Invoiceupload.html";
+            event.preventDefault();
+        }
+        function redirectToemail(event) { 
+            window.location.href = "./Email.html";
+            event.preventDefault();
+        }
+         function redirectTodataprocess(event) { 
+            window.location.href = "https://nsight-dashboard-gyh5f9cmb9dth2gc.canadacentral-01.azurewebsites.net/";
+            event.preventDefault();
+        }
+        function toggleDropdown() {
+            let dropdown = document.getElementById("dropdownMenu");
+            dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+        }
+        function logout() {
+            alert("Logging out...");
+            window.location.href = "./index.html";
+        }
+    </script>
+</body>
+</html>
